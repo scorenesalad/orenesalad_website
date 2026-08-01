@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OreneSalad - www.orenesalad.com</title>
+<!-- 引入 CSS 文件 -->
+<link rel="stylesheet" href="Qwen_css_20260509_xa283lcnb.css">
+<!-- 引入 Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<!-- MediaPipe Tasks Vision (NEW VERSION - 2025) for gesture recognition -->
+<script type="module">
+  // Import MediaPipe Tasks Vision from CDN
+  window.MediaPipeVision = await import('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/vision_bundle.mjs');
+  console.log('MediaPipe Tasks Vision loaded successfully');
+</script>
+<!-- Legacy drawing utils still needed for visualization -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+<style>
+  @font-face {
+    font-family: 'Mountains of Christmas';
+    src: url('Mountains_of_Christmas/MountainsofChristmas-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Mountains of Christmas';
+    src: url('Mountains_of_Christmas/MountainsofChristmas-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Smiley Sans';
+    src: url('smiley-sans-v2.0.1/SmileySans-Oblique.ttf') format('truetype');
+    font-weight: normal;
+    font-style: oblique;
+  }
+
+  @font-face {
+    font-family: 'Libertinus Math';
+    src: url('Libertinus_Math/LibertinusMath-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+</style>
+</head>
+<body>
+
+<div class="browser-frame">
+  <!-- URL bar -->
+  <div class="top-bar">
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <div class="url-bar"></div>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-area">
+      <div id="logo-container" style="position: relative;">
+        <svg class="logo-clover" viewBox="0 0 40 40">
+          <!-- Top leaf - symmetrical heart shape without stroke overlap -->
+          <path d="M20,8 C16,8 12,12 12,17 C12,22 16,26 20,28 C24,26 28,22 28,17 C28,12 24,8 20,8 Z" 
+                fill="#3fc43b" stroke="none"/>
+          <!-- Bottom-left leaf - symmetrical heart shape without stroke overlap -->
+          <path d="M14,22 C10,22 6,26 6,30 C6,34 10,37 14,38 C18,37 22,34 22,30 C22,26 18,22 14,22 Z" 
+                fill="#3fc43b" stroke="none"/>
+          <!-- Bottom-right leaf - symmetrical heart shape without stroke overlap -->
+          <path d="M26,22 C22,22 18,26 18,30 C18,34 22,37 26,38 C30,37 34,34 34,30 C34,26 30,22 26,22 Z" 
+                fill="#3fc43b" stroke="none"/>
+        </svg>
+        <div id="logo-images-container" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+          <img src="sanyecao1.jpg" alt="Clover 1" class="logo-image active">
+          <img src="sanyecao2.jpg" alt="Clover 2" class="logo-image">
+          <img src="sanyecao3.jpg" alt="Clover 3" class="logo-image">
+        </div>
+      </div>
+      <div class="logo-text">
+        <span class="o-green">Orene</span><span class="o-yellow">Salad</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="profile-button" title="Profile">
+        <img src="profile.JPG" alt="Profile">
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- Background decorative clovers removed - replaced with CSS gradient background -->
+    
+    <div class="clover-container">
+      <!-- Three-leaf clover SVG -->
+      <svg class="clover-svg" viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Sketchy filter for hand-drawn feel -->
+          <filter id="sketchy-filter" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="4" result="noise" seed="2"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <!-- Frosted glass filter for gummy candy star -->
+          <filter id="star-frosted">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blur"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="2" result="noise"/>
+            <feDisplacementMap in="blur" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <!-- Star glow filter -->
+          <filter id="star-glow">
+            <feGaussianBlur stdDeviation="4" result="glow"/>
+            <feMerge>
+              <feMergeNode in="glow"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Stem (hand-drawn style with natural curve) -->
+        <g class="stem sketchy">
+          <path d="M200,270 Q195,310 198,350 Q202,390 195,420 Q190,440 186,448" 
+                fill="none" stroke="#4dbf4d" stroke-width="5" stroke-linecap="round"/>
+        </g>
+
+        <!-- Top leaf - slightly wider natural heart shape -->
+        <g class="leaf-group" data-leaf="top">
+          <g class="leaf-wrapper">
+            <path class="leaf sketchy" data-leaf-id="top"
+              d="M200,270 C160,240 135,190 140,150 C143,120 160,95 180,90 C188,88 193,93 200,102 C207,93 212,88 220,90 C240,95 257,120 260,150 C265,190 240,240 200,270 Z"
+              fill="#6dd66d" stroke="#4dbf4d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <!-- Glowing dewdrop - appears on hover over top leaf -->
+            <g class="dewdrop clickable-dewdrop" opacity="0" style="cursor: pointer;">
+              <!-- Dewdrop body with gradient for transparency effect -->
+              <defs>
+                <radialGradient id="dewdrop-gradient" cx="40%" cy="35%" r="50%">
+                  <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9" />
+                  <stop offset="50%" style="stop-color:#e0f7ff;stop-opacity:0.6" />
+                  <stop offset="100%" style="stop-color:#b3e5fc;stop-opacity:0.4" />
+                </radialGradient>
+              </defs>
+              <!-- Main drop shape -->
+              <ellipse cx="220" cy="170" rx="14" ry="17" fill="url(#dewdrop-gradient)" stroke="#a3d9f5" stroke-width="1.5"/>
+              <!-- Highlight/reflection -->
+              <circle cx="215" cy="165" r="4" fill="#ffffff" opacity="0.9"/>
+              <!-- Small secondary highlight -->
+              <circle cx="224" cy="174" r="2" fill="#ffffff" opacity="0.6"/>
+              <!-- Enter text -->
+              <text x="220" y="174" text-anchor="middle" font-family="'Libertinus Math', serif" font-size="11" fill="#2c5f7a" font-weight="bold">Enter</text>
+            </g>
+          </g>
+        </g>
+
+        <!-- Bottom-left leaf - slightly wider natural heart shape (rotated 120 degrees) -->
+        <g class="leaf-group" data-leaf="left" transform="rotate(120, 200, 270)">
+          <g class="leaf-wrapper">
+            <path class="leaf sketchy" data-leaf-id="left"
+              d="M200,270 C160,240 135,190 140,150 C143,120 160,95 180,90 C188,88 193,93 200,102 C207,93 212,88 220,90 C240,95 257,120 260,150 C265,190 240,240 200,270 Z"
+              fill="#6dd66d" stroke="#4dbf4d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <!-- Gummy candy star - appears on hover over left leaf -->
+            <g class="gummy-star" opacity="0" style="cursor: pointer;" transform="translate(225, 175)">
+              <defs>
+                <radialGradient id="star-gradient" cx="38%" cy="30%" r="55%">
+                  <stop offset="0%" style="stop-color:#b8e8ff;stop-opacity:0.95" />
+                  <stop offset="40%" style="stop-color:#7dcff5;stop-opacity:0.65" />
+                  <stop offset="70%" style="stop-color:#4db8e8;stop-opacity:0.45" />
+                  <stop offset="100%" style="stop-color:#2a99cc;stop-opacity:0.3" />
+                </radialGradient>
+                <radialGradient id="star-highlight" cx="40%" cy="30%" r="50%">
+                  <stop offset="0%" style="stop-color:#e8f7ff;stop-opacity:0.8" />
+                  <stop offset="100%" style="stop-color:#b8e8ff;stop-opacity:0.1" />
+                </radialGradient>
+              </defs>
+              <!-- Outer glow -->
+              <polygon points="0,-17 4,-7 16,-7 6.5,0.5 10,13 0,5.5 -10,13 -6.5,0.5 -16,-7 -4,-7"
+                       fill="rgba(120,200,240,0.12)" filter="url(#star-glow)"/>
+              <!-- Drop shadow for 3D depth -->
+              <polygon points="0,-16 3.8,-6.5 15,-6.5 6,0.5 9.2,12.3 0,5 -9.2,12.3 -6,0.5 -15,-6.5 -3.8,-6.5"
+                       fill="rgba(80,160,210,0.3)" transform="translate(1.5, 2.5)" filter="none"/>
+              <!-- Main star body - gummy candy with frosted glass -->
+              <polygon points="0,-16 3.8,-6.5 15,-6.5 6,0.5 9.2,12.3 0,5 -9.2,12.3 -6,0.5 -15,-6.5 -3.8,-6.5"
+                       fill="url(#star-gradient)" stroke="rgba(200,235,255,0.5)" stroke-width="1.2" filter="url(#star-frosted)"/>
+              <!-- Inner highlight layer for 3D gummy effect -->
+              <polygon points="0,-12 2.8,-5 11,-5 4.5,0.5 6.8,9 0,3.8 -6.8,9 -4.5,0.5 -11,-5 -2.8,-5"
+                       fill="url(#star-highlight)" filter="url(#star-frosted)"/>
+              <!-- Top shine/gloss spot -->
+              <ellipse cx="-4" cy="-9" rx="3.5" ry="2" fill="rgba(255,255,255,0.75)" transform="rotate(-20, -4, -9)"/>
+              <!-- Small secondary shine -->
+              <ellipse cx="4" cy="-5" rx="1.5" ry="1" fill="rgba(255,255,255,0.4)" transform="rotate(-10, 4, -5)"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- Bottom-right leaf - slightly wider natural heart shape (rotated 240 degrees) -->
+        <g class="leaf-group" data-leaf="right" transform="rotate(240, 200, 270)">
+          <g class="leaf-wrapper">
+            <path class="leaf sketchy" data-leaf-id="right"
+              d="M200,270 C160,240 135,190 140,150 C143,120 160,95 180,90 C188,88 193,93 200,102 C207,93 212,88 220,90 C240,95 257,120 260,150 C265,190 240,240 200,270 Z"
+              fill="#6dd66d" stroke="#4dbf4d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <!-- Ladybug - appears on hover over right leaf, positioned inside the leaf -->
+            <g class="ladybug" opacity="0" style="cursor: pointer;">
+              <!-- Body -->
+              <ellipse cx="180" cy="195" rx="12" ry="15" fill="#ff4444" stroke="#333" stroke-width="1.5"/>
+              <!-- Head -->
+              <circle cx="180" cy="183" r="6" fill="#333"/>
+              <!-- Line dividing wings -->
+              <line x1="180" y1="183" x2="180" y2="210" stroke="#333" stroke-width="1"/>
+              <!-- Seven spots -->
+              <circle cx="175" cy="190" r="2" fill="#333"/>
+              <circle cx="185" cy="190" r="2" fill="#333"/>
+              <circle cx="173" cy="197" r="2" fill="#333"/>
+              <circle cx="187" cy="197" r="2" fill="#333"/>
+              <circle cx="175" cy="204" r="2" fill="#333"/>
+              <circle cx="185" cy="204" r="2" fill="#333"/>
+              <circle cx="180" cy="198" r="2.5" fill="#333"/>
+              <!-- Antennae -->
+              <line x1="177" y1="179" x2="174" y2="175" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="183" y1="179" x2="186" y2="175" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- Center point -->
+        <circle cx="200" cy="270" r="4" fill="#4dbf4d" opacity="0.6"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Profile/Contact popup modal -->
+<div id="contact-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="contact-title">Contact Me</h2>
+      <span class="close-contact">&times;</span>
+    </div>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-label">Email:</span>
+        <a href="mailto:orenesalad@icloud.com" class="contact-value">orenesalad@icloud.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Instagram:</span>
+        <a href="https://instagram.com/Orenesalad_" target="_blank" rel="noopener noreferrer" class="contact-value">Orenesalad_</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Photo Booth modal -->
+<div id="photobooth-modal" class="modal">
+  <div class="modal-content photobooth-content">
+    <div class="modal-header">
+      <h2 class="photobooth-title">Photo Booth</h2>
+      <span class="close-photobooth">&times;</span>
+    </div>
+    <div class="photobooth-container">
+      <div id="camera-loading" class="camera-loading">
+        <div class="loading-spinner"></div>
+        <p>Starting camera...</p>
+      </div>
+      <div class="gesture-help-wrapper">
+        <div class="gesture-help">
+          <p>Explore Flora with Hand Gestures ^_^</p>
+        </div>
+      </div>
+      <div class="video-wrapper">
+        <video id="camera-video" autoplay playsinline></video>
+        <canvas id="gesture-canvas"></canvas>
+        <div id="clover-effects" class="clover-effects"></div>
+      </div>
+      <div class="photobooth-controls">
+        <button id="capture-btn" class="capture-button">Take Photo</button>
+      </div>
+      <canvas id="photo-canvas" style="display: none;"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- About This Site modal (star click) -->
+<div id="about-modal" class="modal">
+  <div class="modal-content about-content">
+    <div class="modal-header">
+      <h2 class="about-title">Coming soon...</h2>
+      <span class="close-about">&times;</span>
+    </div>
+    <div class="about-body">
+    </div>
+  </div>
+</div>
+
+<!-- 引入 JS 文件 -->
+<script src="Qwen_javascript_20260509_3qpkovjr8.js"></script>
+
+</body>
+</html>
