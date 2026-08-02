@@ -476,6 +476,209 @@ body {
   }
 }
 
+/* Comprehensive mobile responsive design */
+@media (max-width: 768px) {
+  body {
+    min-height: auto;
+    overflow-x: hidden;
+  }
+
+  .browser-frame {
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .header {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .logo-area {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .logo-text {
+    font-size: 36px;
+  }
+
+  #logo-container,
+  .logo-clover {
+    width: 48px;
+    height: 48px;
+  }
+
+  .main-content {
+    padding: 20px 15px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .clover-container {
+    width: min(90vw, 400px);
+    height: auto;
+    aspect-ratio: 500 / 570;
+  }
+
+  .header-right {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  .browser-frame {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .header {
+    padding: 8px 10px;
+    border-bottom-width: 1.5px;
+  }
+
+  .logo-text {
+    font-size: 24px;
+  }
+
+  #logo-container,
+  .logo-clover {
+    width: 40px;
+    height: 40px;
+  }
+
+  .main-content {
+    padding: 15px 10px;
+    min-height: calc(100vh - 80px);
+  }
+
+  .clover-container {
+    width: min(95vw, 320px);
+  }
+
+  .header-right {
+    gap: 10px;
+  }
+
+  .profile-button {
+    width: 36px;
+    height: 36px;
+    border-width: 2px;
+  }
+
+  .about-btn {
+    width: 36px;
+    height: 36px;
+    border-width: 2px;
+  }
+
+  .about-q {
+    font-size: 20px;
+  }
+
+  /* Reduce animation intensity on mobile for better performance */
+  .interactive-clover {
+    width: 18px;
+    height: 18px;
+  }
+
+  .main-content::before {
+    filter: blur(10px);
+    opacity: 0.4;
+  }
+
+  .main-content::after {
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo-text {
+    font-size: 20px;
+  }
+
+  #logo-container,
+  .logo-clover {
+    width: 35px;
+    height: 35px;
+  }
+
+  .clover-container {
+    width: min(98vw, 280px);
+  }
+
+  .header-right {
+    gap: 8px;
+  }
+
+  .profile-button,
+  .about-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  .browser-frame {
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .header {
+    padding: 6px 12px;
+  }
+
+  .main-content {
+    padding: 10px 15px;
+    justify-content: flex-start;
+    padding-top: 60px;
+  }
+
+  .clover-container {
+    width: min(70vw, 300px);
+    height: auto;
+    aspect-ratio: 500 / 570;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .interactive-clover {
+    display: none;
+  }
+
+  .leaf-group,
+  .leaf-wrapper {
+    cursor: pointer;
+  }
+
+  /* Increase touch target sizes */
+  .profile-button,
+  .about-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* High DPI screen optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .main-content::before,
+  .main-content::after {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+}
+
 .photobooth-title {
   font-family: 'Mountains of Christmas', cursive;
   font-size: clamp(28px, 4vw, 42px);
