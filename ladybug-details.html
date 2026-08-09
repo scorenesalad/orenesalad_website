@@ -68,6 +68,7 @@
     display: flex;
     align-items: center;
     gap: 14px;
+    cursor: pointer;
   }
 
   #logo-container {
@@ -978,6 +979,9 @@
         <div class="gallery-item">
           <img src="_4.png" alt="图片4">
         </div>
+        <div class="gallery-item">
+          <img src="_5.png" alt="图片5">
+        </div>
       </div>
 
       <a href="index.html" class="btn-home" title="Back to Home">
@@ -1088,6 +1092,10 @@
         logoImages.forEach(img => img.classList.remove('active'));
         currentImageIndex = 0;
       }
+    });
+
+    logoArea.addEventListener('click', function() {
+      window.location.href = 'index.html';
     });
     
     // Contact/Profile modal functionality

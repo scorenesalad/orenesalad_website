@@ -1954,7 +1954,7 @@
           type: 'star',
           opacity: 0,
           createdAt: now + Math.random() * 50, // Slight stagger (0-50ms)
-          lifetime: 1500 + Math.random() * 800, // Live 1.5-2.3 seconds
+          lifetime: 3000 + Math.random() * 2000, // Live 3-5 seconds
           color: color,
           points: 5, // 5-pointed stars
           trailLength: 0, // For motion trail effect
@@ -2188,7 +2188,7 @@
           type: 'ripple',
           opacity: 0, // Start invisible
           createdAt: now + Math.random() * 200, // Slight random delay (0-200ms) for natural appearance
-          lifetime: 3000 + Math.random() * 1000, // Live for 3-4 seconds with variation
+          lifetime: 5000 + Math.random() * 2000, // Live for 5-7 seconds with variation
           color: color,
           originalX: startX, // Remember original position
           originalY: startY,
