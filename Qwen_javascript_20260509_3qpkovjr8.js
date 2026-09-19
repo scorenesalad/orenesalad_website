@@ -2140,18 +2140,20 @@
       
       console.log('✨ Creating ripples at mirrored position:', finalPalmX.toFixed(3), '(original:', palmCenter.x.toFixed(3), ')');
       
-      // Vibrant color palette for ripples
+      // Light, fresh color palette for ethereal light spot effect
       const colors = [
-        '#FF6B9D', // Hot pink
-        '#C44DFF', // Purple
-        '#4ECDC4', // Teal
-        '#FFE66D', // Yellow
-        '#FF8C42', // Orange
-        '#95E1D3', // Mint
-        '#F38181', // Coral
-        '#AA96DA', // Lavender
-        '#FCBAD3', // Light pink
-        '#A8E6CF'  // Light green
+        '#FFB6C1', // Light pink
+        '#FFC0CB', // Pink
+        '#FFE4E1', // Misty rose
+        '#98FB98', // Pale green
+        '#90EE90', // Light green
+        '#ADFF2F', // Green yellow
+        '#87CEEB', // Sky blue
+        '#ADD8E6', // Light blue
+        '#E0FFFF', // Light cyan
+        '#FFFACD', // Lemon chiffon
+        '#FFFFE0', // Light yellow
+        '#FFEFD5'  // Papaya whip
       ];
       
       // Configuration
@@ -2254,16 +2256,16 @@
         const currentX = (particle.x + floatOffsetX) * canvasWidth;
         const currentY = (particle.y + floatOffsetY) * canvasHeight;
         
-        // FADE: Quick fade in, slow fade out
+        // FADE: Quick fade in, slow fade out (with lower max opacity for ethereal effect)
         let opacity;
         if (lifeProgress < 0.08) {
           // Fade in during first 8%
-          opacity = lifeProgress / 0.08;
+          opacity = (lifeProgress / 0.08) * 0.6; // Max 60% opacity for light spot effect
         } else if (lifeProgress > 0.75) {
           // Fade out during last 25%
-          opacity = 1 - ((lifeProgress - 0.75) / 0.25);
+          opacity = 0.6 * (1 - ((lifeProgress - 0.75) / 0.25));
         } else {
-          opacity = 1; // Full opacity
+          opacity = 0.6; // 60% max opacity for ethereal light spots
         }
         
         // TWINKLE/PULSE: Size pulsing effect
@@ -2278,26 +2280,32 @@
         if (particle.particleType === 'star') {
           // Stars removed - this code won't execute anymore
         } else {
-          // Draw CIRCLE shape - PURE SOLID COLOR (no white center)
+          // Draw CIRCLE shape - ETHEREAL LIGHT SPOT effect
           ctx.beginPath();
           
-          // Solid color circle with slight transparency at edges only
+          // Soft radial gradient for light spot effect (center bright, edges very soft)
           const gradient = ctx.createRadialGradient(
             currentX, currentY, 0,
             currentX, currentY, currentSize
           );
           
-          gradient.addColorStop(0, particle.color);           // Solid color center
-          gradient.addColorStop(0.85, particle.color);       // Solid color till 85%
-          gradient.addColorStop(1, particle.color + '00');   // Transparent edge ONLY
+          // Convert hex to rgba for better transparency control
+          const hex = particle.color.replace('#', '');
+          const r = parseInt(hex.substr(0, 2), 16);
+          const g = parseInt(hex.substr(2, 2), 16);
+          const b = parseInt(hex.substr(4, 2), 16);
+          
+          gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.9)`);   // Bright center
+          gradient.addColorStop(0.3, `rgba(${r}, ${g}, ${b}, 0.6)`);  // Soft transition
+          gradient.addColorStop(0.7, `rgba(${r}, ${g}, ${b}, 0.3)`);  // Getting transparent
+          gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);      // Fully transparent edge
+          
+          // Set glow before fill
+          ctx.shadowColor = particle.color;
+          ctx.shadowBlur = 15; // Softer, larger glow
           
           ctx.fillStyle = gradient;
           ctx.arc(currentX, currentY, currentSize, 0, Math.PI * 2);
-          ctx.fill();
-          
-          // Subtle glow effect (no harsh glow)
-          ctx.shadowColor = particle.color;
-          ctx.shadowBlur = 8;
           ctx.fill();
         }
         

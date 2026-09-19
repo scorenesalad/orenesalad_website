@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OreneSalad - www.orenesalad.com</title>
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
 <!-- 引入 CSS 文件 -->
 <link rel="stylesheet" href="Qwen_css_20260509_xa283lcnb.css">
 <!-- 引入 Google Fonts -->
@@ -164,36 +166,86 @@
               d="M200,270 C160,240 135,190 140,150 C143,120 160,95 180,90 C188,88 193,93 200,102 C207,93 212,88 220,90 C240,95 257,120 260,150 C265,190 240,240 200,270 Z"
               fill="#6dd66d" stroke="#4dbf4d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             
-            <!-- Gummy candy star - appears on hover over left leaf -->
-            <g class="gummy-star" opacity="0" style="cursor: pointer;" transform="translate(225, 175)">
+            <!-- White wired earphones - simple hand-drawn style like the reference image, rotated 180° -->
+            <g class="natural-swirl" opacity="0" style="cursor: pointer;" transform="translate(185, 150) rotate(85) rotate(180)">
               <defs>
-                <radialGradient id="star-gradient" cx="38%" cy="30%" r="55%">
-                  <stop offset="0%" style="stop-color:#b8e8ff;stop-opacity:0.95" />
-                  <stop offset="40%" style="stop-color:#7dcff5;stop-opacity:0.65" />
-                  <stop offset="70%" style="stop-color:#4db8e8;stop-opacity:0.45" />
-                  <stop offset="100%" style="stop-color:#2a99cc;stop-opacity:0.3" />
-                </radialGradient>
-                <radialGradient id="star-highlight" cx="40%" cy="30%" r="50%">
-                  <stop offset="0%" style="stop-color:#e8f7ff;stop-opacity:0.8" />
-                  <stop offset="100%" style="stop-color:#b8e8ff;stop-opacity:0.1" />
-                </radialGradient>
+                <filter id="sketchy-earphone">
+                  <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="3" result="noise" seed="3"/>
+                  <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" xChannelSelector="R" yChannelSelector="G"/>
+                </filter>
               </defs>
-              <!-- Outer glow -->
-              <polygon points="0,-17 4,-7 16,-7 6.5,0.5 10,13 0,5.5 -10,13 -6.5,0.5 -16,-7 -4,-7"
-                       fill="rgba(120,200,240,0.12)" filter="url(#star-glow)"/>
-              <!-- Drop shadow for 3D depth -->
-              <polygon points="0,-16 3.8,-6.5 15,-6.5 6,0.5 9.2,12.3 0,5 -9.2,12.3 -6,0.5 -15,-6.5 -3.8,-6.5"
-                       fill="rgba(80,160,210,0.3)" transform="translate(1.5, 2.5)" filter="none"/>
-              <!-- Main star body - gummy candy with frosted glass -->
-              <polygon points="0,-16 3.8,-6.5 15,-6.5 6,0.5 9.2,12.3 0,5 -9.2,12.3 -6,0.5 -15,-6.5 -3.8,-6.5"
-                       fill="url(#star-gradient)" stroke="rgba(200,235,255,0.5)" stroke-width="1.2" filter="url(#star-frosted)"/>
-              <!-- Inner highlight layer for 3D gummy effect -->
-              <polygon points="0,-12 2.8,-5 11,-5 4.5,0.5 6.8,9 0,3.8 -6.8,9 -4.5,0.5 -11,-5 -2.8,-5"
-                       fill="url(#star-highlight)" filter="url(#star-frosted)"/>
-              <!-- Top shine/gloss spot -->
-              <ellipse cx="-4" cy="-9" rx="3.5" ry="2" fill="rgba(255,255,255,0.75)" transform="rotate(-20, -4, -9)"/>
-              <!-- Small secondary shine -->
-              <ellipse cx="4" cy="-5" rx="1.5" ry="1" fill="rgba(255,255,255,0.4)" transform="rotate(-10, 4, -5)"/>
+
+              <!-- Left earbud - simple white rounded shape like AirPods -->
+              <path d="M -17,28
+                       C -19,22 -17,16 -13,14
+                       C -9,12 -5,14 -4,18
+                       C -3,22 -4,26 -7,28
+                       C -10,30 -15,30 -17,28 Z"
+                    fill="#FFFFFF"
+                    stroke="none"
+                    filter="url(#sketchy-earphone)"/>
+
+              <!-- Left earbud tip - smaller rounded end -->
+              <path d="M -13,14
+                       C -11,11 -8,11 -6,13
+                       C -5,15 -5,17 -6,18"
+                    fill="#FAFAFA"
+                    stroke="none"
+                    filter="url(#sketchy-earphone)"/>
+
+              <!-- Left earbud - two small black dots (speaker holes) -->
+              <circle cx="-12" cy="23" r="1" fill="#333333"/>
+              <circle cx="-10" cy="24" r="1" fill="#333333"/>
+
+              <!-- Right earbud - simple white rounded shape like AirPods -->
+              <path d="M 17,25
+                       C 19,19 17,13 13,11
+                       C 9,9 5,11 4,15
+                       C 3,19 4,23 7,25
+                       C 10,27 15,27 17,25 Z"
+                    fill="#FFFFFF"
+                    stroke="none"
+                    filter="url(#sketchy-earphone)"/>
+
+              <!-- Right earbud tip - smaller rounded end -->
+              <path d="M 13,11
+                       C 11,8 8,8 6,10
+                       C 5,12 5,14 6,15"
+                    fill="#FAFAFA"
+                    stroke="none"
+                    filter="url(#sketchy-earphone)"/>
+
+              <!-- Right earbud - two small black dots (speaker holes) -->
+              <circle cx="12" cy="20" r="1" fill="#333333"/>
+              <circle cx="10" cy="21" r="1" fill="#333333"/>
+
+              <!-- Left earbud wire - coming out from bottom of left earbud -->
+              <path d="M -10,30
+                       C -8,38 -5,45 0,50"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    filter="url(#sketchy-earphone)"/>
+
+              <!-- Right earbud wire - coming out from bottom of right earbud -->
+              <path d="M 10,27
+                       C 8,35 5,42 0,50"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    filter="url(#sketchy-earphone)"/>
+
+              <!-- Main cable with natural curve going down from junction point (shortened by 20%) -->
+              <path d="M 0,50
+                       C 3,58 -2,66 1,74
+                       C 4,82 -1,90 2,98"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    filter="url(#sketchy-earphone)"/>
             </g>
           </g>
         </g>
@@ -299,6 +351,69 @@
 
 <!-- 引入 JS 文件 -->
 <script src="Qwen_javascript_20260509_3qpkovjr8.js"></script>
+
+<!-- Rain sound for swirl interaction -->
+<audio id="rain-sound" loop preload="auto">
+  <source src="rain01.m4a" type="audio/mp4">
+</audio>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const rainAudio = document.getElementById('rain-sound');
+  const swirlElement = document.querySelector('.natural-swirl');
+  const leftLeaf = document.querySelector('.leaf-group[data-leaf="left"]');
+
+  let isPlaying = false;
+
+  if (swirlElement && leftLeaf && rainAudio) {
+    // Set maximum safe volume (1.0 = 100%)
+    rainAudio.volume = 1.0;
+
+    // Click on swirl to play/pause
+    swirlElement.addEventListener('click', function(e) {
+      e.stopPropagation();
+      console.log('🌀 Swirl clicked! Audio element:', !!rainAudio, 'Src:', rainAudio.src);
+
+      if (!isPlaying) {
+        const playPromise = rainAudio.play();
+
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            isPlaying = true;
+            console.log('✅🌧️ Rain sound playing! Volume:', rainAudio.volume);
+          }).catch(error => {
+            console.error('❌ Play failed:', error.name, error.message);
+            alert('无法播放音频：' + error.message);
+          });
+        }
+      } else {
+        rainAudio.pause();
+        rainAudio.currentTime = 0;
+        isPlaying = false;
+        console.log('⏹️🌧️ Rain sound paused');
+      }
+    });
+
+    // Stop when mouse leaves the leaf
+    leftLeaf.addEventListener('mouseleave', function() {
+      if (isPlaying) {
+        rainAudio.pause();
+        rainAudio.currentTime = 0;
+        isPlaying = false;
+        console.log('🖱️🌧️ Rain stopped - mouse left leaf');
+      }
+    });
+
+    console.log('✅ Swirl audio ready | Element:', !!swirlElement, '| Leaf:', !!leftLeaf, '| Audio:', !!rainAudio);
+  } else {
+    console.error('❌ Missing elements:', {
+      swirl: !!swirlElement,
+      leaf: !!leftLeaf,
+      audio: !!rainAudio
+    });
+  }
+});
+</script>
 
 </body>
 </html>

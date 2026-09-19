@@ -399,16 +399,16 @@ body {
   transition: opacity 0.5s ease;
 }
 
-/* Gummy candy star - appears on hover over left leaf */
-.leaf-group[data-leaf="left"]:hover .gummy-star {
+/* Natural swirl pattern - appears on hover over left leaf */
+.leaf-group[data-leaf="left"]:hover .natural-swirl {
   opacity: 1;
 }
 
-.gummy-star {
+.natural-swirl {
   transition: opacity 0.4s ease;
 }
 
-.gummy-star:hover {
+.natural-swirl:hover {
   filter: brightness(1.15);
 }
 
